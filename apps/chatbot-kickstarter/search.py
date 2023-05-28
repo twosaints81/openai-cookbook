@@ -1,8 +1,13 @@
 import streamlit as st
-import openai 
+import openai
+
 
 from database import get_redis_connection, get_redis_results
 from config import INDEX_NAME, COMPLETIONS_MODEL
+
+openai.api_key = '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'
+
+
 
 # initialise Redis connection
 
@@ -11,12 +16,12 @@ client = get_redis_connection()
 ### SEARCH APP
 
 st.set_page_config(
-    page_title="Streamlit Search - Demo",
-    page_icon=":robot:"
+    page_title="Home Health Regulations Search - Demo",
+    page_icon=":speech-ballon:" # Emoji - find more here: https://www.webfx.com/tools/emoji-cheat-sheet/ 
 )
 
-st.title('Formula 1 Search')
-st.subheader("Search for any Formula 1 rule questions you have")
+st.title('Home Health Regulations Search')
+st.subheader("Search for any Medicare Home Health rule questions you have")
 
 prompt = st.text_input("Enter your search here","", key="input")
 

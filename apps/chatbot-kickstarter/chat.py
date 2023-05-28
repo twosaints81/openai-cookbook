@@ -13,20 +13,18 @@ redis_client = get_redis_connection()
 
 # System prompt requiring Question and Year to be extracted from the user
 system_prompt = '''
-You are a helpful Formula 1 knowledge base assistant. You need to capture a Question and Year from each customer.
-The Question is their query on Formula 1, and the Year is the year of the applicable Formula 1 season.
-Think about this step by step:
-- The user will ask a Question
-- You will ask them for the Year if their question didn't include a Year
-- Once you have the Year, say "searching for answers".
+You are a helpful Medicare Home Health knowledge base assistant. You need to capture a Question and any clarification information.
+The Question is their query on Medicare Home Health Regulations, and the clarification information is any additional information they provide to help you answer their question.
+If you need to ask the user for clarification information, ask them for it.
+Once you have a Question and any clarification information, say "searching for answers".
 
-Example:
+Example 1:
 
-User: I'd like to know the cost cap for a power unit
+User: I'd like to know if a clinician can perform a home health initial assessment.
 
-Assistant: Certainly, what year would you like this for?
+Assistant: Certainly, which clinician did you want to know this about?
 
-User: 2023 please.
+User: Physical Therapist, please.
 
 Assistant: Searching for answers.
 '''
@@ -34,12 +32,12 @@ Assistant: Searching for answers.
 ### CHATBOT APP
 
 st.set_page_config(
-    page_title="Streamlit Chat - Demo",
-    page_icon=":robot:"
+    page_title="Home Health Regs Chat - Demo",
+    page_icon=":speech-ballon:"
 )
 
-st.title('Formula 1 Chatbot')
-st.subheader("Help us help you learn about Formula 1")
+st.title('Medicare Home Health Regulations Chatbot')
+st.subheader("Help us help you learn about Medicare Home Health Regulations")
 
 if 'generated' not in st.session_state:
     st.session_state['generated'] = []

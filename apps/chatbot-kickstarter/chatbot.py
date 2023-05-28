@@ -6,6 +6,8 @@ from database import get_redis_connection, get_redis_results
 
 from config import CHAT_MODEL, COMPLETIONS_MODEL, INDEX_NAME
 
+openai.api_key = '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'
+
 redis_client = get_redis_connection()
 
 # A basic class to create a message as a dict for chat
@@ -66,8 +68,8 @@ class RetrievalAssistant:
             question_extract = openai.Completion.create(
                 model = COMPLETIONS_MODEL, 
                 prompt=f'''
-                Extract the user's latest question and the year for that question from this 
-                conversation: {self.conversation_history}. Extract it as a sentence stating the Question and Year"
+                Extract the user's latest question and any clarifying information from the conversation: {self.conversation_history}. Extract it as a sentence stating the Question and and clarification information. Let's think about it step by step, then answer the user's question." 
+                
             '''
             )
             search_result = self._get_search_results(question_extract['choices'][0]['text'])
